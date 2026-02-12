@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import logo from "url:./assets/tiktok.png";
+import logo from "url:./assets/spotify.png";
 import searchIcon from "url:./assets/search.png";
 import user from "url:./assets/user.png";
 
@@ -22,7 +22,7 @@ const TitleComponent = (props) => (
   </div>
 );
 
-// Function Cmposition
+// Function Cmposition - Using one component another component
 const HeadingComponent = () => {
   return (
     <>
@@ -36,9 +36,9 @@ const NavBar = () => {
   return (
     <>
       <nav className="navbar">
-        <img src={logo} />
-        <form className="search">
-          <input type="text" placefolder="search something" />
+        <img className="logo" src={logo} />
+        <form className="searchbar">
+          <input id="searchtext" type="text" placeholder="search something" />
           <button className="search-button">
             <img src={searchIcon} />
           </button>
