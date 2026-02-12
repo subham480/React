@@ -649,7 +649,7 @@ const resList = [
   },
 ];
 
-const Restaurant = (resData) => {
+const RestaurantCard = (resData) => {
   const data = resData.resData.info;
   const { cloudinaryImageId, name, cuisines, locality, avgRating, slaString } =
     data;
@@ -676,18 +676,24 @@ const Restaurant = (resData) => {
   );
 };
 
+const Body = () => {
+  return (
+    <div className="res-container">
+      search
+      <div className="card-collection">
+        {resList.map((res) => (
+          <RestaurantCard key={res.info.id} resData={res} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const AppLayout = () => {
   return (
     <>
       <Header />
-      <div className="res-container">
-        search
-        <div className="card-collection">
-          {resList.map((res) => (
-            <Restaurant key={res.info.id} resData={res} />
-          ))}
-        </div>
-      </div>
+      <Body />
     </>
   );
 };
