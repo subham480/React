@@ -3,8 +3,7 @@ import placeholderImage from "../../assets/placeholder-light.avif";
 
 const RestaurantCard = (resData) => {
   const data = resData.resData.info;
-  const { cloudinaryImageId, name, cuisines, locality, avgRating, slaString } =
-    data;
+  const { cloudinaryImageId, name, cuisines, locality, avgRating, sla } = data;
   return (
     <div className="res-card">
       <div className="res-image">
@@ -20,7 +19,7 @@ const RestaurantCard = (resData) => {
         <p>{name}</p>
 
         <p>
-          ⭐{avgRating} - <span>⌛{data.sla.slaString} </span>
+          ⭐{avgRating} - <span>⌛{sla.slaString} </span>
         </p>
         <p>{cuisines.join(", ")}</p>
         <p>{locality}</p>
