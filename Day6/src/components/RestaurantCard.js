@@ -1,4 +1,5 @@
 import { CDN_URL } from "../utils/constants";
+import placeholderImage from "../../assets/placeholder-light.avif";
 
 const RestaurantCard = (resData) => {
   const data = resData.resData.info;
@@ -7,13 +8,19 @@ const RestaurantCard = (resData) => {
   return (
     <div className="res-card">
       <div className="res-image">
-        <img src={CDN_URL + cloudinaryImageId} />
+        <img
+          src={
+            cloudinaryImageId
+              ? `${CDN_URL + cloudinaryImageId}`
+              : placeholderImage
+          }
+        />
       </div>
       <div className="res-desc">
         <p>{name}</p>
 
         <p>
-          {avgRating} - <span> {data.sla.slaString} </span>
+          ⭐{avgRating} - <span>⌛{data.sla.slaString} </span>
         </p>
         <p>{cuisines.join(", ")}</p>
         <p>{locality}</p>
