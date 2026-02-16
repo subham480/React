@@ -20,7 +20,6 @@ const Body = () => {
 
       const json = await data.json();
 
-      console.log(json);
       setlistOfRestaurants(
         json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants,
@@ -63,7 +62,14 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button className="btn allres-btn">All Restaurant</button>
+        <button
+          className="btn allres-btn"
+          onClick={() => {
+            setFilteredListOfRestauarants(listOfRestaurants);
+          }}
+        >
+          All Restaurant
+        </button>
         <button
           className="btn filterd-btn"
           onClick={() => {
