@@ -2,7 +2,6 @@ import { resList } from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
-import axios from "axios";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
@@ -66,53 +65,7 @@ const Body = () => {
         <button
           className="btn allres-btn"
           onClick={() => {
-            const loadMoreRestaurants = async () => {
-              try {
-                const response = await axios.post(
-                  "https://corsproxy.io/?" +
-                    encodeURIComponent(
-                      "https://www.swiggy.com/dapi/restaurants/list/update",
-                    ),
-                  {
-                    lat: "28.65420",
-                    lng: "77.23730",
-                    nextOffset: "CJhlELQ4KIDg7Z7vlr+3ZDCnEw==",
-                    widgetOffset: {
-                      NewListingView_category_bar_chicletranking_TwoRows: "",
-                      NewListingView_category_bar_chicletranking_TwoRows_Rendition:
-                        "",
-                      Restaurant_Group_WebView_PB_Theme: "",
-                      Restaurant_Group_WebView_SEO_PB_Theme: "",
-                      collectionV5RestaurantListWidget_SimRestoRelevance_food_seo:
-                        "39",
-                      inlineFacetFilter: "",
-                      restaurantCountWidget: "",
-                    },
-                    filters: {},
-                    seoParams: {
-                      seoUrl: "https://www.swiggy.com/restaurants",
-                      pageType: "FOOD_HOMEPAGE",
-                      apiName: "FoodHomePage",
-                      businessLine: "FOOD",
-                    },
-                    page_type: "DESKTOP_WEB_LISTING",
-                    _csrf: "kh1XePxag4ut-Xu5q1l8cKmelQeKsHqOyxZTGuls",
-                  },
-                  {
-                    headers: {
-                      "Content-Type": "application/json", // ✅ Only this!
-                      // No User-Agent, Referer, etc.
-                    },
-                    timeout: 10000, // ✅ Axios bonus
-                  },
-                );
-
-                console.log(response);
-              } catch (error) {
-                console.error(error.response?.status, error.message);
-              }
-            };
-            loadMoreRestaurants();
+            setFilteredListOfRestauarants(listOfRestaurants);
           }}
         >
           All Restaurant
