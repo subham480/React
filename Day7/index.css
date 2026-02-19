@@ -158,10 +158,10 @@ p {
 }
 
 .card-collection a {
-  /* Target the <a> wrapping .res-card */
-  display: block; /* ✅ Makes anchor block-level flex child */
-  flex: 1 1 300px; /* Grow/shrink, basis 300px */
-  text-decoration: none; /* Remove underline */
+  display: block;
+  /* flex: 1 1 300px;  */
+  text-decoration: none;
+  width: 30%;
 }
 
 /**.res-card {

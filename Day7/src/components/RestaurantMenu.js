@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { CDN_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
-import placeholderImage from "../../assets/placeholder-light.avif";
+
 import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState([]);
+  const [resInfo, setResInfo] = useState(null);
   const [resMenu, setResMenu] = useState([]);
+  const [error, setError] = useState(null);
 
   const { resId } = useParams();
 
@@ -15,19 +16,28 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchResinfo = async () => {
-    console.log(resId);
-    const data = await fetch(
-      "https://corsproxy.io/?" +
-        "https://namastedev.com/api/v1/listRestaurantMenu/" +
-        resId,
-    );
+    try {
+      console.log(resId);
+      const data = await fetch(
+        "https://corsproxy.io/?" +
+          "https://namastedev.com/api/v1/listRestaurantMenu/" +
+          resId,
+      );
 
-    const json = await data.json();
-    console.log(json);
-    setResInfo(json?.data?.cards[2]?.card?.card?.info);
-    setResMenu(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+      const json = await data.json();
+      console.log(json);
+
+      if (!json.status)
+        throw new Error(json.error || "Restaurant Menu not found");
+      setResInfo(json?.data?.cards[2]?.card?.card?.info);
+      setResMenu(
+        json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards,
+      );
+    } catch (e) {
+      setError(e.message);
+    }
   };
-  if (resInfo.length === 0) return <Shimmer />;
+  if (!resInfo) return <div>{error}</div>;
   const {
     name,
     id,
@@ -56,9 +66,9 @@ const RestaurantMenu = () => {
         <div className="res-info-right">
           <img
             src={
-              cloudinaryImageId
-                ? `${CDN_URL + cloudinaryImageId}`
-                : placeholderImage
+              cloudinaryImageId[-1] === 1
+                ? `${placeholderImage}`
+                : `${CDN_URL + cloudinaryImageId}`
             }
           />
         </div>

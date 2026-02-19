@@ -1,5 +1,5 @@
 import { CDN_URL } from "../utils/constants";
-import placeholderImage from "../../assets/placeholder-light.avif";
+import placeholderImage from "url:../assets/placeholder-light.avif";
 
 const RestaurantCard = (resData) => {
   const data = resData.resData.info;
@@ -9,9 +9,10 @@ const RestaurantCard = (resData) => {
       <div className="res-image">
         <img
           src={
-            cloudinaryImageId
-              ? `${CDN_URL + cloudinaryImageId}`
-              : `${placeholderImage}`
+            cloudinaryImageId.trim()[cloudinaryImageId.trim().length - 1] ===
+            "1"
+              ? placeholderImage
+              : `${CDN_URL + cloudinaryImageId}`
           }
         />
       </div>
