@@ -29,3 +29,6 @@ import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 -dynamic route: Dynamic routes in React Router v6 (with createBrowserRouter) use URL params like :id to handle variable paths, such as /user/123
 
 -useParams: It is a React Router hook that extracts dynamic URL parameters (like :id from /user/123) into an object for use in components.
+
+import { useParams } from "react-router-dom";
+const { resId } = useParams();

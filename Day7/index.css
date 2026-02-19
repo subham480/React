@@ -54,8 +54,6 @@ p {
 }
 
 .res-card {
-  width: 30%;
-
   border-radius: 8%;
   background: #f0f0f0;
   transition: transform 0.3s ease-in;
@@ -121,4 +119,61 @@ p {
   height: 350px;
   background: darkgray;
   border-radius: 8%;
+}
+
+.res-page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.res-info {
+  display: flex;
+  margin: 0 auto;
+  padding: 2rem 4rem;
+  width: 50%;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+}
+
+.res-info-center {
+  margin-top: 4rem;
+}
+.res-info-right img,
+.menu-item img {
+  max-width: 6rem;
+  border-radius: 10%;
+}
+
+.res-menu {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 2rem 4rem;
+  width: 50%;
+}
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.card-collection a {
+  /* Target the <a> wrapping .res-card */
+  display: block; /* ✅ Makes anchor block-level flex child */
+  flex: 1 1 300px; /* Grow/shrink, basis 300px */
+  text-decoration: none; /* Remove underline */
+}
+
+/**.res-card {
+  display: flex; /* Internal card layout 
+  flex-direction: column;
+} */
+
+a {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-decoration: unset;
+  color: #000000;
+}
+.header a {
+  color: #fff;
 }

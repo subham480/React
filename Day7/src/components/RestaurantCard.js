@@ -11,7 +11,7 @@ const RestaurantCard = (resData) => {
           src={
             cloudinaryImageId
               ? `${CDN_URL + cloudinaryImageId}`
-              : placeholderImage
+              : `${placeholderImage}`
           }
         />
       </div>
