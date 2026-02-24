@@ -56,7 +56,7 @@ this.state = { count: 0,
 count:1 };
 }
 
-setState is used to update the state variable.
+setState is used to update the state variable
 
 setState({
 count: this.state.count+1
